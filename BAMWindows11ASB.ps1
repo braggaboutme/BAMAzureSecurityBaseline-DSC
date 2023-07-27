@@ -4,9 +4,10 @@ Configuration Windows11_ASB {
         [string[]]$NodeName ='localhost'
         )
  
-    Import-DscResource -ModuleName 'PSDesiredStateConfiguration'
+    #Import-DscResource -ModuleName 'PSDesiredStateConfiguration'
     Import-DscResource -ModuleName 'AuditPolicyDsc'
     Import-DscResource -ModuleName 'SecurityPolicyDsc'
+    Import-DscResource -ModuleName 'GPRegistryPolicyDsc'
  
     Node $NodeName {
         AccountPolicy AccountPolicies
@@ -31,7 +32,7 @@ Configuration Windows11_ASB {
         # Ensure 'Windows Search (WSearch)' is set to 'Disabled'
         Registry 'Wsearch' {
             Ensure      = 'Present'
-            Key         = 'System\CurrentControlSet\Services\Wsearch'
+            Key         = 'HKLM:\System\CurrentControlSet\Services\Wsearch'
             ValueName   = 'Start'
             ValueType   = 'DWord'
             ValueData   = '4'
@@ -39,7 +40,7 @@ Configuration Windows11_ASB {
         # Configured "Allow Diagnostics Data" is set to '1' which mean, send only basic amount of diagnostic data
         Registry 'AllowTelemetry' {
             Ensure      = 'Present'
-            Key         = 'SOFTWARE\Policies\Microsoft\Windows\DataCollection'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection'
             ValueName   = 'AllowTelemetry'
             ValueType   = 'DWord'
             ValueData   = '1'
@@ -48,7 +49,7 @@ Configuration Windows11_ASB {
         # Ensure 'Boot-Start Driver Initialization Policy' is set to 3 which means it will enable Good, unknown and bad but critical drivers
         Registry 'Boot-StartDriver' {
             Ensure      = 'Present'
-            Key         = 'System\CurrentControlSet\Policies\EarlyLaunch'
+            Key         = 'HKLM:\System\CurrentControlSet\Policies\EarlyLaunch'
             ValueName   = 'DriverLoadPolicy'
             ValueType   = 'DWord'
             ValueData   = '3'
@@ -56,7 +57,7 @@ Configuration Windows11_ASB {
         # Configured "Do not show feedback notifications"
         Registry 'FeedbackNotifications' {
             Ensure      = 'Present'
-            Key         = 'SOFTWARE\Policies\Microsoft\Windows\DataCollection'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection'
             ValueName   = 'DoNotShowFeedbackNotifications'
             ValueType   = 'DWord'
             ValueData   = '1'
@@ -64,7 +65,7 @@ Configuration Windows11_ASB {
         # Configured "Do not show feedback notifications"
         Registry 'MinimizeSimultaneousInternetConnections' {
             Ensure      = 'Present'
-            Key         = 'SOFTWARE\Policies\Microsoft\Windows\WcmSvc\GroupPolicy'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WcmSvc\GroupPolicy'
             ValueName   = 'fMinimizeConnections'
             ValueType   = 'DWord'
             ValueData   = '1'
@@ -72,7 +73,7 @@ Configuration Windows11_ASB {
         # Configured "Prohibit Network Bridge Installations"
         Registry 'ProhibitNetworkBridgeInstallation' {
             Ensure      = 'Present'
-            Key         = 'SOFTWARE\Policies\Microsoft\Windows\Network Connections'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Network Connections'
             ValueName   = 'NC_AllowNetBridge_NLA'
             ValueType   = 'DWord'
             ValueData   = '0'
@@ -80,7 +81,7 @@ Configuration Windows11_ASB {
         # Disable App Screen Notifications on lock screen
         Registry 'DisableLockScreenAppNotifications' {
             Ensure      = 'Present'
-            Key         = 'SOFTWARE\Policies\Microsoft\Windows\System'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System'
             ValueName   = 'DisableLockScreenAppNotifications'
             ValueType   = 'DWord'
             ValueData   = '1'
@@ -88,7 +89,7 @@ Configuration Windows11_ASB {
         # Allows Admins to create local connection firewall rules
         Registry 'AllowLocalConnSecurity' {
             Ensure      = 'Present'
-            Key         = 'SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile'
             ValueName   = 'AllowLocalIPsecPolicyMerge'
             ValueType   = 'DWord'
             ValueData   = '1'
@@ -96,7 +97,7 @@ Configuration Windows11_ASB {
         # Enabled Domain Firewall
         Registry 'EnablesDomainFirewall' {
             Ensure      = 'Present'
-            Key         = 'SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile'
             ValueName   = 'EnableFirewall'
             ValueType   = 'DWord'
             ValueData   = '1'
@@ -104,7 +105,7 @@ Configuration Windows11_ASB {
         # Enabled Private Firewall
         Registry 'EnablesPrivateFirewall' {
             Ensure      = 'Present'
-            Key         = 'SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
             ValueName   = 'EnableFirewall'
             ValueType   = 'DWord'
             ValueData   = '1'
@@ -112,7 +113,7 @@ Configuration Windows11_ASB {
         # Disables Private Outbound Connections
         Registry 'DisablesPrivateFirewallOutbound' {
             Ensure      = 'Present'
-            Key         = 'SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
             ValueName   = 'DefaultOutboundAction'
             ValueType   = 'DWord'
             ValueData   = '0'
@@ -120,7 +121,7 @@ Configuration Windows11_ASB {
         # Enabled Private Firewall Local Connection Rules
         Registry 'LocalConnSecurityPrivateFirewall' {
             Ensure      = 'Present'
-            Key         = 'SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
             ValueName   = 'AllowLocalIPsecPolicyMerge'
             ValueType   = 'DWord'
             ValueData   = '1'
@@ -128,7 +129,7 @@ Configuration Windows11_ASB {
         # Disabled Private Firewall Display Notifications
         Registry 'DisablePrivateFirewallNotifications' {
             Ensure      = 'Present'
-            Key         = 'SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
             ValueName   = 'DisableNotifications'
             ValueType   = 'DWord'
             ValueData   = '1'
@@ -136,7 +137,7 @@ Configuration Windows11_ASB {
         # Enabled Public Firewall State
         Registry 'EnablesPublicFirewall' {
             Ensure      = 'Present'
-            Key         = 'SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
             ValueName   = 'EnableFirewall'
             ValueType   = 'DWord'
             ValueData   = '1'
@@ -144,7 +145,7 @@ Configuration Windows11_ASB {
         # Disables Public Outbound Connections
         Registry 'DisablesPublicFirewallOutbound' {
             Ensure      = 'Present'
-            Key         = 'SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
             ValueName   = 'DefaultOutboundAction'
             ValueType   = 'DWord'
             ValueData   = '0'
@@ -152,7 +153,7 @@ Configuration Windows11_ASB {
         # Disabled Public Firewall Display Notifications
         Registry 'DisablePublicFirewallNotifications' {
             Ensure      = 'Present'
-            Key         = 'SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
             ValueName   = 'DisableNotifications'
             ValueType   = 'DWord'
             ValueData   = '1'
@@ -160,7 +161,7 @@ Configuration Windows11_ASB {
         # Use Certificate Rules on Windows Executables
         Registry 'EnableCertificateRulesOnExecutables' {
             Ensure      = 'Present'
-            Key         = 'Software\Policies\Microsoft\Windows\Safer\CodeIdentifiers'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Safer\CodeIdentifiers'
             ValueName   = 'AuthenticodeEnabled'
             ValueType   = 'DWord'
             ValueData   = '1'
@@ -168,7 +169,7 @@ Configuration Windows11_ASB {
         # Private Firewall Don't allow Unicast Response
         Registry 'PrivateFirewallBlockUnicastResponse' {
             Ensure      = 'Present'
-            Key         = 'Software\Policies\Microsoft\WindowsFirewall\PrivateProfile'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
             ValueName   = 'DisableUnicastResponsesToMulticastBroadcast'
             ValueType   = 'DWord'
             ValueData   = '0'
@@ -176,7 +177,7 @@ Configuration Windows11_ASB {
         # Public Firewall allow Unicast Response
         Registry 'PublicFirewallAloowUnicastResponse' {
             Ensure      = 'Present'
-            Key         = 'Software\Policies\Microsoft\WindowsFirewall\PublicProfile'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
             ValueName   = 'DisableUnicastResponsesToMulticastBroadcast'
             ValueType   = 'DWord'
             ValueData   = '1'
@@ -184,7 +185,7 @@ Configuration Windows11_ASB {
         # Domain Firewall Log Dropped Packets
         Registry 'DomainFirewallLogDropped' {
             Ensure      = 'Present'
-            Key         = 'SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging'
             ValueName   = 'LogDroppedPackets'
             ValueType   = 'DWord'
             ValueData   = '1'
@@ -192,7 +193,7 @@ Configuration Windows11_ASB {
         # Private Firewall Log Sucessful Connections
         Registry 'PrivateFirewallLogSuccess' {
             Ensure      = 'Present'
-            Key         = 'SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging'
             ValueName   = 'LogSuccessfulConnections'
             ValueType   = 'DWord'
             ValueData   = '1'
@@ -200,7 +201,15 @@ Configuration Windows11_ASB {
         # Public Firewall Log Sucessful Connections
         Registry 'PublicFirewallLogSuccess' {
             Ensure      = 'Present'
-            Key         = 'SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging'
+            ValueName   = 'LogSuccessfulConnections'
+            ValueType   = 'DWord'
+            ValueData   = '1'
+        }
+        # Public Firewall Log Sucessful Connections
+        Registry 'PublicFirewallLogSuccess' {
+            Ensure      = 'Present'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging'
             ValueName   = 'LogFileSize'
             ValueType   = 'DWord'
             ValueData   = '16384'
@@ -208,7 +217,7 @@ Configuration Windows11_ASB {
         # Caching of logon credentials must be limited
         Registry 'LimitLogonCredCache' {
             Ensure      = 'Present'
-            Key         = 'SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon'
+            Key         = 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon'
             ValueName   = 'CachedLogonsCount'
             ValueType   = 'DWord'
             ValueData   = '4'
@@ -216,8 +225,16 @@ Configuration Windows11_ASB {
         # Users required to enter password to access private keys
         Registry 'KeyProtection' {
             Ensure      = 'Present'
-            Key         = 'SOFTWARE\Policies\Microsoft\Cryptography'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\Cryptography'
             ValueName   = 'ForceKeyProtection'
+            ValueType   = 'DWord'
+            ValueData   = '2'
+        }
+        # Behavior of the elvation prompt for admins in admin approval mode
+        Registry 'AdminApprovalModeforAdmins' {
+            Ensure      = 'Present'
+            Key         = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System'
+            ValueName   = 'ConsentPromptBehaviorAdmin'
             ValueType   = 'DWord'
             ValueData   = '2'
         }
