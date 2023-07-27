@@ -206,8 +206,8 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '1'
         }
-        # Public Firewall Log Sucessful Connections
-        Registry 'PublicFirewallLogSuccess' {
+        # Public Firewall Log Size
+        Registry 'PublicFirewallLogSize' {
             Ensure      = 'Present'
             Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging'
             ValueName   = 'LogFileSize'
