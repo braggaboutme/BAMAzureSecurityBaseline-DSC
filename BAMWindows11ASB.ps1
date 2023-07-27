@@ -110,7 +110,7 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '1'
         }
-        # Disables Private Outbound Connections
+        # Disables Private Outbound Connections (0 = Allow Traffic)
         Registry 'DisablesPrivateFirewallOutbound' {
             Ensure      = 'Present'
             Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
@@ -142,7 +142,7 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '1'
         }
-        # Disables Public Outbound Connections
+        # Disables Public Outbound Connections (0 = Allow Traffic)
         Registry 'DisablesPublicFirewallOutbound' {
             Ensure      = 'Present'
             Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
@@ -180,7 +180,7 @@ Configuration Windows11_ASB {
             Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
             ValueName   = 'DisableUnicastResponsesToMulticastBroadcast'
             ValueType   = 'DWord'
-            ValueData   = '1'
+            ValueData   = '0'
         }
         # Domain Firewall Log Dropped Packets
         Registry 'DomainFirewallLogDropped' {
@@ -252,7 +252,7 @@ Configuration Windows11_ASB {
         }
         UserRightsAssignment Allowlogonlocally {
             Policy       = 'Allow_log_on_locally'
-            Identity     = 'Administrators'
+            Identity     = 'Administrators, Authenticated Users'
         }
         # 2.2.17 (L1) Ensure 'Deny log on as a batch job' to include 'Guests'
         UserRightsAssignment Denylogonasabatchjob {
