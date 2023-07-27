@@ -126,7 +126,7 @@ Configuration Windows11_ASB {
             ValueData   = '1'
         }
         # Disabled Private Firewall Display Notifications
-        Registry 'LocalConnSecurityPrivateFirewall' {
+        Registry 'DisablePrivateFirewallNotifications' {
             Ensure      = 'Present'
             Key         = 'SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
             ValueName   = 'DisableNotifications'
@@ -150,7 +150,7 @@ Configuration Windows11_ASB {
             ValueData   = '0'
         }
         # Disabled Public Firewall Display Notifications
-        Registry 'LocalConnSecurityPublicFirewall' {
+        Registry 'DisablePublicFirewallNotifications' {
             Ensure      = 'Present'
             Key         = 'SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
             ValueName   = 'DisableNotifications'
@@ -189,10 +189,10 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '1'
         }
-        # Public Firewall Log Sucessful Connections
-        Registry 'PublicFirewallLogSuccess' {
+        # Private Firewall Log Sucessful Connections
+        Registry 'PrivateFirewallLogSuccess' {
             Ensure      = 'Present'
-            Key         = 'SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging'
+            Key         = 'SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging'
             ValueName   = 'LogSuccessfulConnections'
             ValueType   = 'DWord'
             ValueData   = '1'
