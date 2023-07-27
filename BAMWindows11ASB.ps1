@@ -62,7 +62,7 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '1'
         }
-        # Configured "Do not show feedback notifications"
+        # Configured "Minimize Simultaneous Internet Connections. (Might be a problem for AVD)"
         Registry 'MinimizeSimultaneousInternetConnections' {
             Ensure      = 'Present'
             Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WcmSvc\GroupPolicy'
@@ -248,11 +248,11 @@ Configuration Windows11_ASB {
         # Bypass Traverse Checking
         UserRightsAssignment BypassTraverseChecking {
             Policy       = 'Bypass_traverse_checking'
-            Identity     = 'Administrators, Authenticated Users, Backup Operators, LOCAL SERVICE, NETWORK SERVICE'
+            Identity     = 'Administrators, Users, Backup Operators, Everyone, LOCAL SERVICE, NETWORK SERVICE'
         }
         UserRightsAssignment Allowlogonlocally {
             Policy       = 'Allow_log_on_locally'
-            Identity     = 'Administrators, Authenticated Users'
+            Identity     = 'Administrators, Users'
         }
         # 2.2.17 (L1) Ensure 'Deny log on as a batch job' to include 'Guests'
         UserRightsAssignment Denylogonasabatchjob {
@@ -277,12 +277,12 @@ Configuration Windows11_ASB {
         # 2.2.25 (L1) Ensure 'Increase scheduling priority' is set to 'Administrators, Windows Manager\Windows Manager Group'
         UserRightsAssignment Increaseschedulingpriority {
             Policy       = 'Increase_scheduling_priority'
-            Identity     = 'Administrators'
+            Identity     = 'Administrators, Window Manager\Window Manager Group'
         }
         # Increase a process working set
         UserRightsAssignment IncreaseProcessWorkingSet {
             Policy       = 'Increase_a_process_working_set'
-            Identity     = 'Administrators, LOCAL SERVICE'
+            Identity     = 'Administrators, Users, LOCAL SERVICE'
         }
     }
 }
