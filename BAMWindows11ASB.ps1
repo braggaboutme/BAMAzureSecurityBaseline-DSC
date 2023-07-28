@@ -157,6 +157,14 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '1'
         }
+        # Disable downloading print drivers of HTTP
+        Registry 'DisableDownloadPrintDriversHTTP' {
+            Ensure      = 'Present'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Printers'
+            ValueName   = 'DisableWebPnPDownload'
+            ValueType   = 'DWord'
+            ValueData   = '1'
+        }
         # 17.1.1 (L1) Ensure 'Audit Credential Validation' is set to 'Success and Failure'
         AuditPolicySubcategory "Audit Credential Validation (Success)"
         {
@@ -167,6 +175,11 @@ Configuration Windows11_ASB {
         # 2.2.17 (L1) Ensure 'Deny log on as a batch job' to include 'Guests'
         UserRightsAssignment Denylogonasabatchjob {
             Policy       = 'Deny_log_on_as_a_batch_job'
+            Identity     = 'Guests'
+        }
+        # Ensure 'Deny log on locally to include 'Guests'
+        UserRightsAssignment Denylogonasabatchjob {
+            Policy       = 'Deny_log_on_locally'
             Identity     = 'Guests'
         }
         # 2.2.18 (L1) Ensure 'Deny log on as a service' to include 'Guests'
@@ -203,6 +216,11 @@ Configuration Windows11_ASB {
             Name = 'AccountSecurityOptions'
         # 2.3.11.3 (L1) Ensure 'Network Security: Allow PKU2U authentication requests to this computer to use online identities' is set to 'Enabled'  to allow Azure authentication
             Network_Security_Allow_PKU2U_authentication_requests_to_this_computer_to_use_online_identities  = 'Enabled'
+        }
+        SecurityOption AccountSecurityOptions {
+            Name = 'AdminApprovalForBuiltInAdmin'
+        # Require Admin Approval mode for Built In Admins
+            User_Account_Control_Admin_Approval_Mode_for_the_Built_in_Administrator_account  = 'Enabled'
         }
 }
 }
