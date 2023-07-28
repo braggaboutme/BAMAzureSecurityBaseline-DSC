@@ -289,6 +289,7 @@ Configuration Windows11_ASB {
         # 2.3.11.3 (L1) Ensure 'Network Security: Allow PKU2U authentication requests to this computer to use online identities' is set to 'Enabled'  to allow Azure authentication
             Network_Security_Allow_PKU2U_authentication_requests_to_this_computer_to_use_online_identities  = 'Enabled'
         }
+    }
 }
 
 Windows11_ASB
