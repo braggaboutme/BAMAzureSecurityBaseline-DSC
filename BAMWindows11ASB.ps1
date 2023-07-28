@@ -133,6 +133,14 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '2'
         }
+        # Don't display network selection UI
+        Registry 'DontDisplayNetworkSelectionUI' {
+            Ensure      = 'Present'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System'
+            ValueName   = 'DontDisplayNetworkSelectionUI'
+            ValueType   = 'DWord'
+            ValueData   = '1'
+        }
         # 17.1.1 (L1) Ensure 'Audit Credential Validation' is set to 'Success and Failure'
         AuditPolicySubcategory "Audit Credential Validation (Success)"
         {
