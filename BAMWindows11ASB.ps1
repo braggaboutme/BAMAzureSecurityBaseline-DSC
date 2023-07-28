@@ -141,6 +141,22 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '1'
         }
+        # Disallow AutoPlay for non-volume
+        Registry 'DisallowAutoPlayforNonVolume' {
+            Ensure      = 'Present'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer'
+            ValueName   = 'NoAutoplayfornonVolume'
+            ValueType   = 'DWord'
+            ValueData   = '1'
+        }
+        # Set the Default Behavior for Autorun
+        Registry 'SetDefaultAutoRunBehavior' {
+            Ensure      = 'Present'
+            Key         = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer'
+            ValueName   = 'NoAutorun'
+            ValueType   = 'DWord'
+            ValueData   = '1'
+        }
         # 17.1.1 (L1) Ensure 'Audit Credential Validation' is set to 'Success and Failure'
         AuditPolicySubcategory "Audit Credential Validation (Success)"
         {
