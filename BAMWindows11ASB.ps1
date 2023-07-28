@@ -170,6 +170,11 @@ Configuration Windows11_ASB {
             Policy       = 'Increase_a_process_working_set'
             Identity     = 'Administrators, LOCAL SERVICE'
         }
+        # Increase a process working set
+        UserRightsAssignment Bypasstraversechecking {
+            Policy       = 'Bypass_traverse_checking'
+            Identity     = 'Administrators, Users, Backup Operators, LOCAL SERVICE, NETWORK SERVICE'
+        }
         SecurityOption AccountSecurityOptions {
             Name = 'AccountSecurityOptions'
         # 2.3.11.3 (L1) Ensure 'Network Security: Allow PKU2U authentication requests to this computer to use online identities' is set to 'Enabled'  to allow Azure authentication
