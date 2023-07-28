@@ -45,7 +45,6 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '1'
         }
-        
         # Ensure 'Boot-Start Driver Initialization Policy' is set to 3 which means it will enable Good, unknown and bad but critical drivers
         Registry 'Boot-StartDriver' {
             Ensure      = 'Present'
@@ -62,67 +61,11 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '1'
         }
-        # Configured "Minimize Simultaneous Internet Connections. (Might be a problem for AVD)"
-        Registry 'MinimizeSimultaneousInternetConnections' {
-            Ensure      = 'Present'
-            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WcmSvc\GroupPolicy'
-            ValueName   = 'fMinimizeConnections'
-            ValueType   = 'DWord'
-            ValueData   = '1'
-        }
-        # Configured "Prohibit Network Bridge Installations"
-        Registry 'ProhibitNetworkBridgeInstallation' {
-            Ensure      = 'Present'
-            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Network Connections'
-            ValueName   = 'NC_AllowNetBridge_NLA'
-            ValueType   = 'DWord'
-            ValueData   = '0'
-        }
         # Disable App Screen Notifications on lock screen
         Registry 'DisableLockScreenAppNotifications' {
             Ensure      = 'Present'
             Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System'
             ValueName   = 'DisableLockScreenAppNotifications'
-            ValueType   = 'DWord'
-            ValueData   = '1'
-        }
-        # Allows Admins to create local connection firewall rules
-        Registry 'AllowLocalConnSecurity' {
-            Ensure      = 'Present'
-            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile'
-            ValueName   = 'AllowLocalIPsecPolicyMerge'
-            ValueType   = 'DWord'
-            ValueData   = '1'
-        }
-        # Enabled Domain Firewall
-        Registry 'EnablesDomainFirewall' {
-            Ensure      = 'Present'
-            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile'
-            ValueName   = 'EnableFirewall'
-            ValueType   = 'DWord'
-            ValueData   = '1'
-        }
-        # Enabled Private Firewall
-        Registry 'EnablesPrivateFirewall' {
-            Ensure      = 'Present'
-            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
-            ValueName   = 'EnableFirewall'
-            ValueType   = 'DWord'
-            ValueData   = '1'
-        }
-        # Disables Private Outbound Connections (0 = Allow Traffic)
-        Registry 'DisablesPrivateFirewallOutbound' {
-            Ensure      = 'Present'
-            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
-            ValueName   = 'DefaultOutboundAction'
-            ValueType   = 'DWord'
-            ValueData   = '0'
-        }
-        # Enabled Private Firewall Local Connection Rules
-        Registry 'LocalConnSecurityPrivateFirewall' {
-            Ensure      = 'Present'
-            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
-            ValueName   = 'AllowLocalIPsecPolicyMerge'
             ValueType   = 'DWord'
             ValueData   = '1'
         }
@@ -134,22 +77,6 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '1'
         }
-        # Enabled Public Firewall State
-        Registry 'EnablesPublicFirewall' {
-            Ensure      = 'Present'
-            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
-            ValueName   = 'EnableFirewall'
-            ValueType   = 'DWord'
-            ValueData   = '1'
-        }
-        # Disables Public Outbound Connections (0 = Allow Traffic)
-        Registry 'DisablesPublicFirewallOutbound' {
-            Ensure      = 'Present'
-            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
-            ValueName   = 'DefaultOutboundAction'
-            ValueType   = 'DWord'
-            ValueData   = '0'
-        }
         # Disabled Public Firewall Display Notifications
         Registry 'DisablePublicFirewallNotifications' {
             Ensure      = 'Present'
@@ -157,30 +84,6 @@ Configuration Windows11_ASB {
             ValueName   = 'DisableNotifications'
             ValueType   = 'DWord'
             ValueData   = '1'
-        }
-        # Use Certificate Rules on Windows Executables
-        Registry 'EnableCertificateRulesOnExecutables' {
-            Ensure      = 'Present'
-            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Safer\CodeIdentifiers'
-            ValueName   = 'AuthenticodeEnabled'
-            ValueType   = 'DWord'
-            ValueData   = '1'
-        }
-        # Private Firewall Don't allow Unicast Response
-        Registry 'PrivateFirewallBlockUnicastResponse' {
-            Ensure      = 'Present'
-            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
-            ValueName   = 'DisableUnicastResponsesToMulticastBroadcast'
-            ValueType   = 'DWord'
-            ValueData   = '0'
-        }
-        # Public Firewall allow Unicast Response
-        Registry 'PublicFirewallAloowUnicastResponse' {
-            Ensure      = 'Present'
-            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
-            ValueName   = 'DisableUnicastResponsesToMulticastBroadcast'
-            ValueType   = 'DWord'
-            ValueData   = '0'
         }
         # Domain Firewall Log Dropped Packets
         Registry 'DomainFirewallLogDropped' {
@@ -222,14 +125,6 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '4'
         }
-        # Users required to enter password to access private keys
-        Registry 'KeyProtection' {
-            Ensure      = 'Present'
-            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\Cryptography'
-            ValueName   = 'ForceKeyProtection'
-            ValueType   = 'DWord'
-            ValueData   = '2'
-        }
         # Behavior of the elvation prompt for admins in admin approval mode
         Registry 'AdminApprovalModeforAdmins' {
             Ensure      = 'Present'
@@ -244,15 +139,6 @@ Configuration Windows11_ASB {
             Name      = 'Credential Validation'
             Ensure    = 'Present'
             AuditFlag = 'Success'
-        }
-        # Bypass Traverse Checking
-        UserRightsAssignment BypassTraverseChecking {
-            Policy       = 'Bypass_traverse_checking'
-            Identity     = 'Administrators, Users, Backup Operators, Everyone, LOCAL SERVICE, NETWORK SERVICE'
-        }
-        UserRightsAssignment Allowlogonlocally {
-            Policy       = 'Allow_log_on_locally'
-            Identity     = 'Administrators, Users'
         }
         # 2.2.17 (L1) Ensure 'Deny log on as a batch job' to include 'Guests'
         UserRightsAssignment Denylogonasabatchjob {
@@ -282,14 +168,14 @@ Configuration Windows11_ASB {
         # Increase a process working set
         UserRightsAssignment IncreaseProcessWorkingSet {
             Policy       = 'Increase_a_process_working_set'
-            Identity     = 'Administrators, Users, LOCAL SERVICE'
+            Identity     = 'Administrators, LOCAL SERVICE'
         }
         SecurityOption AccountSecurityOptions {
             Name = 'AccountSecurityOptions'
         # 2.3.11.3 (L1) Ensure 'Network Security: Allow PKU2U authentication requests to this computer to use online identities' is set to 'Enabled'  to allow Azure authentication
             Network_Security_Allow_PKU2U_authentication_requests_to_this_computer_to_use_online_identities  = 'Enabled'
         }
-    }
+}
 }
 
 Windows11_ASB
