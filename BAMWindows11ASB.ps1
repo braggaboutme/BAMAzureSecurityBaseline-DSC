@@ -16,7 +16,7 @@ Configuration Windows11_ASB {
             # 1.1.1 (L1) Ensure 'Enforce password history' is set to '24 or more password(s)'
             Enforce_password_history                    = 24
             # 1.1.2 (L1) Ensure 'Maximum password age' is set to '60 or fewer days, but not 0'
-            Maximum_Password_Age                        = 70
+            Maximum_Password_Age                        = 60
             # 1.1.3 (L1) Ensure 'Minimum password age' is set to '1 or more day(s)'
             Minimum_Password_Age                        = 1
             # 1.1.4 (L1) Ensure 'Minimum password length' is set to '14 or more character(s)'
@@ -186,6 +186,14 @@ Configuration Windows11_ASB {
             Ensure      = 'Present'
             Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Network Connections'
             ValueName   = 'NC_AllowNetBridge_NLA'
+            ValueType   = 'DWord'
+            ValueData   = '0'
+        }
+        # Windows Server must be configured to prevent Internet Control Message Protocol (ICMP) redirects from overriding Open Shortest Path First (OSPF)-generated routes.
+        Registry 'PreventICMPredirectsfromOSPF' {
+            Ensure      = 'Present'
+            Key         = 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters'
+            ValueName   = 'EnableICMPRedirect'
             ValueType   = 'DWord'
             ValueData   = '0'
         }
