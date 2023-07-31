@@ -269,6 +269,12 @@ Configuration Windows11_ASB {
             Policy       = 'Bypass_traverse_checking'
             Identity     = 'Administrators, Users, Backup Operators, LOCAL SERVICE, NETWORK SERVICE'
         }
+        # Allow Log On Locally to only admins
+        UserRightsAssignment AllowLogOnLocally {
+            Policy       = 'Allow_log_on_locally'
+            Identity     = 'Administrators'
+        }
+
         SecurityOption AccountSecurityOptions {
             Name = 'AccountSecurityOptions'
         # 2.3.11.3 (L1) Ensure 'Network Security: Allow PKU2U authentication requests to this computer to use online identities' is set to 'Enabled'  to allow Azure authentication
