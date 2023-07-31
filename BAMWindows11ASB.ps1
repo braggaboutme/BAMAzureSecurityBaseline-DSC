@@ -149,6 +149,14 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '1'
         }
+        # Turn Off AutoPlay
+        Registry 'TurnOffAutoPlay' {
+            Ensure      = 'Present'
+            Key         = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer'
+            ValueName   = 'NoDriveTypeAutoRun'
+            ValueType   = 'DWord'
+            ValueData   = '255'
+        }
         # Set the Default Behavior for Autorun
         Registry 'SetDefaultAutoRunBehavior' {
             Ensure      = 'Present'
@@ -178,7 +186,7 @@ Configuration Windows11_ASB {
             Identity     = 'Guests'
         }
         # Ensure 'Deny log on locally to include 'Guests'
-        UserRightsAssignment Denylogonasabatchjob {
+        UserRightsAssignment Denylogonaslocally {
             Policy       = 'Deny_log_on_locally'
             Identity     = 'Guests'
         }
@@ -216,11 +224,10 @@ Configuration Windows11_ASB {
             Name = 'AccountSecurityOptions'
         # 2.3.11.3 (L1) Ensure 'Network Security: Allow PKU2U authentication requests to this computer to use online identities' is set to 'Enabled'  to allow Azure authentication
             Network_Security_Allow_PKU2U_authentication_requests_to_this_computer_to_use_online_identities  = 'Enabled'
-        }
-        SecurityOption AccountSecurityOptions {
-            Name = 'AdminApprovalForBuiltInAdmin'
         # Require Admin Approval mode for Built In Admins
             User_Account_Control_Admin_Approval_Mode_for_the_Built_in_Administrator_account  = 'Enabled'
+        # Determins wheter digital certificates are processed when software restriction policies are enabled and a user or process attempts to run software with an .exe file name extension
+            System_settings_Use_Certificate_Rules_on_Windows_Executables_for_Software_Restriction_Policies = 'Enabled'
         }
 }
 }
