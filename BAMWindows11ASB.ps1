@@ -232,7 +232,7 @@ Configuration Windows11_ASB {
         # 2.2.25 (L1) Ensure 'Increase scheduling priority' is set to 'Administrators, Windows Manager\Windows Manager Group'
         UserRightsAssignment Increaseschedulingpriority {
             Policy       = 'Increase_scheduling_priority'
-            Identity     = 'Administrators, Window Manager\Window Manager Group'
+            Identity     = 'Administrators'
         }
         # Increase a process working set
         UserRightsAssignment IncreaseProcessWorkingSet {
