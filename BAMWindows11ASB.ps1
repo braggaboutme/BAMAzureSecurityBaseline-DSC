@@ -69,6 +69,31 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '1'
         }
+        # Enable Domain Firewall
+        Registry 'EnableDomainFirewall' {
+            Ensure      = 'Present'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile'
+            ValueName   = 'EnableFirewall'
+            ValueType   = 'DWord'
+            ValueData   = '1'
+        }
+        # Enable Private Firewall
+        Registry 'EnablePrivateFirewall' {
+            Ensure      = 'Present'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
+            ValueName   = 'EnableFirewall'
+            ValueType   = 'DWord'
+            ValueData   = '1'
+        }
+        # Enable Public Firewall
+        Registry 'EnablePublicFirewall' {
+            Ensure      = 'Present'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
+            ValueName   = 'EnableFirewall'
+            ValueType   = 'DWord'
+            ValueData   = '1'
+        }
+        
         # Disabled Private Firewall Display Notifications
         Registry 'DisablePrivateFirewallNotifications' {
             Ensure      = 'Present'
