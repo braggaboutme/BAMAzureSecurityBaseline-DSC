@@ -173,6 +173,22 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '1'
         }
+        # Sign-in last interactive user automatically after a system-initiatied restart
+        Registry 'DisableSignInLastUserAfterRestart' {
+            Ensure      = 'Present'
+            Key         = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System'
+            ValueName   = 'DisableAutomaticRestartSignOn'
+            ValueType   = 'DWord'
+            ValueData   = '1'
+        }
+        # Prohibit install on network bridge on DNS domain network
+        Registry 'ProhibitInstallNetworkBridge' {
+            Ensure      = 'Present'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Network Connections'
+            ValueName   = 'NC_AllowNetBridge_NLA'
+            ValueType   = 'DWord'
+            ValueData   = '0'
+        }
         # 17.1.1 (L1) Ensure 'Audit Credential Validation' is set to 'Success and Failure'
         AuditPolicySubcategory "Audit Credential Validation (Success)"
         {
