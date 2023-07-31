@@ -263,7 +263,7 @@ Configuration Windows11_ASB {
         # Increase a process working set
         UserRightsAssignment IncreaseProcessWorkingSet {
             Policy       = 'Increase_a_process_working_set'
-            Identity     = 'Administrators, Local Service'
+            Identity     = @('Administrators','LOCAL SERVICE')
             Force        = $true
         }
         # Increase a process working set
