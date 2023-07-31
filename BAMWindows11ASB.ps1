@@ -229,7 +229,7 @@ Configuration Windows11_ASB {
         # Increase a process working set
         UserRightsAssignment IncreaseProcessWorkingSet {
             Policy       = 'Increase_a_process_working_set'
-            Identity     = 'Administrators, LOCAL SERVICE'
+            Identity     = 'Administrators, Local Service'
         }
         # Increase a process working set
         UserRightsAssignment Bypasstraversechecking {
@@ -244,6 +244,8 @@ Configuration Windows11_ASB {
             User_Account_Control_Admin_Approval_Mode_for_the_Built_in_Administrator_account  = 'Enabled'
         # Determins wheter digital certificates are processed when software restriction policies are enabled and a user or process attempts to run software with an .exe file name extension
             System_settings_Use_Certificate_Rules_on_Windows_Executables_for_Software_Restriction_Policies = 'Enabled'
+        # Determines wheter users can use private keys, such as their Secure/Multipurpose Internet Mail Extensions (S/MIME) key, without a password
+            System_cryptography_Force_strong_key_protection_for_user_keys_stored_on_the_computer = 'User must enter a password each time they use a key'
         }
 }
 }
