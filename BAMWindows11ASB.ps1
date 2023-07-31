@@ -264,6 +264,7 @@ Configuration Windows11_ASB {
         UserRightsAssignment IncreaseProcessWorkingSet {
             Policy       = 'Increase_a_process_working_set'
             Identity     = 'Administrators, Local Service'
+            Force        = $true
         }
         # Increase a process working set
         UserRightsAssignment Bypasstraversechecking {
