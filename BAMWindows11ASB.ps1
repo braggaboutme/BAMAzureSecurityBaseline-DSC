@@ -120,7 +120,7 @@ Configuration Windows11_ASB {
         # Disable Public Firewall Unicast Response
         Registry 'DisableUnicastResponsesPublicFW' {
             Ensure      = 'Present'
-            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
             ValueName   = 'DisableUnicastResponsesToMulticastBroadcast'
             ValueType   = 'DWord'
             ValueData   = '1'
@@ -253,6 +253,12 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '0'
         }
+        # Sets the PKU2U setting to Not Set so that it doesn't show up in the Azure Security Baseline Guest Configuration
+        Registry 'PKU2UNotSet' {
+            Ensure      = 'Absent'
+            Key         = 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\pku2u'
+            ValueName   = 'AllowOnlineID'
+        }
         # 17.1.1 (L1) Ensure 'Audit Credential Validation' is set to 'Success and Failure'
         AuditPolicySubcategory "Audit Credential Validation (Success)"
         {
@@ -318,7 +324,7 @@ Configuration Windows11_ASB {
         SecurityOption AccountSecurityOptions {
             Name = 'AccountSecurityOptions'
         # 2.3.11.3 (L1) Ensure 'Network Security: Allow PKU2U authentication requests to this computer to use online identities' is set to 'Enabled'  to allow Azure authentication
-            Network_Security_Allow_PKU2U_authentication_requests_to_this_computer_to_use_online_identities  = 'Enabled'
+            #Network_Security_Allow_PKU2U_authentication_requests_to_this_computer_to_use_online_identities  = 'Enabled'
         # Require Admin Approval mode for Built In Admins
             User_Account_Control_Admin_Approval_Mode_for_the_Built_in_Administrator_account  = 'Enabled'
         # Determins wheter digital certificates are processed when software restriction policies are enabled and a user or process attempts to run software with an .exe file name extension
