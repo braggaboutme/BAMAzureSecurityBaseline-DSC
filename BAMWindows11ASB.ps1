@@ -85,6 +85,14 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '1'
         }
+        # Enable Private Firewall Unicast Response
+        Registry 'Allow Unicast Responses' {
+            Ensure      = 'Present'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
+            ValueName   = 'DisableUnicastResponsesToMulticastBroadcast'
+            ValueType   = 'DWord'
+            ValueData   = '0'
+        }
         # Enable Public Firewall
         Registry 'EnablePublicFirewall' {
             Ensure      = 'Present'
@@ -294,6 +302,8 @@ Configuration Windows11_ASB {
             System_settings_Use_Certificate_Rules_on_Windows_Executables_for_Software_Restriction_Policies = 'Enabled'
         # Determines wheter users can use private keys, such as their Secure/Multipurpose Internet Mail Extensions (S/MIME) key, without a password
             System_cryptography_Force_strong_key_protection_for_user_keys_stored_on_the_computer = 'User must enter a password each time they use a key'
+        # Number of logons to cache
+            Interactive_logon_Number_of_previous_logons_to_cache_in_case_domain_controller_is_not_available = "4"
         }
 }
 }
