@@ -101,6 +101,14 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '1'
         }
+        # Allow Outbound Connections PrivateFW
+        Registry 'AllowOutboundConnectionsPrivateFW' {
+            Ensure      = 'Present'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
+            ValueName   = 'DefaultOutboundAction'
+            ValueType   = 'DWord'
+            ValueData   = '0'
+        }
         # Enable Public Firewall
         Registry 'EnablePublicFirewall' {
             Ensure      = 'Present'
@@ -109,7 +117,14 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '1'
         }
-        
+        # Allow Outbound Connections PublicFW
+        Registry 'AllowOutboundConnectionsPublicFW' {
+            Ensure      = 'Present'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
+            ValueName   = 'DefaultOutboundAction'
+            ValueType   = 'DWord'
+            ValueData   = '0'
+        }
         # Disabled Private Firewall Display Notifications
         Registry 'DisablePrivateFirewallNotifications' {
             Ensure      = 'Present'
