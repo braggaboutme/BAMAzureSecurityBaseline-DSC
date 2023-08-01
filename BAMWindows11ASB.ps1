@@ -86,12 +86,20 @@ Configuration Windows11_ASB {
             ValueData   = '1'
         }
         # Enable Private Firewall Unicast Response
-        Registry 'Allow Unicast Responses' {
+        Registry 'AllowUnicastResponsesPrivateFW' {
             Ensure      = 'Present'
             Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
             ValueName   = 'DisableUnicastResponsesToMulticastBroadcast'
             ValueType   = 'DWord'
             ValueData   = '0'
+        }
+        # Enable Private Firewall Unicast Response
+        Registry 'ApplyLocalConnectionSecurityPrivateFW' {
+            Ensure      = 'Present'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
+            ValueName   = 'AllowLocalIPsecPolicyMerge'
+            ValueType   = 'DWord'
+            ValueData   = '1'
         }
         # Enable Public Firewall
         Registry 'EnablePublicFirewall' {
