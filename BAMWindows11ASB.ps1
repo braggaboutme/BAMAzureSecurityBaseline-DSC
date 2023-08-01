@@ -173,14 +173,6 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '16384'
         }
-        # Caching of logon credentials must be limited
-        Registry 'LimitLogonCredCache' {
-            Ensure      = 'Present'
-            Key         = 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon'
-            ValueName   = 'CachedLogonsCount'
-            ValueType   = 'DWord'
-            ValueData   = '4'
-        }
         # Behavior of the elvation prompt for admins in admin approval mode
         Registry 'AdminApprovalModeforAdmins' {
             Ensure      = 'Present'
