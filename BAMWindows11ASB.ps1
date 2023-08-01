@@ -93,7 +93,7 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '0'
         }
-        # Enable Private Firewall Unicast Response
+        # Apply Local Connection Security Rules
         Registry 'ApplyLocalConnectionSecurityPrivateFW' {
             Ensure      = 'Present'
             Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
