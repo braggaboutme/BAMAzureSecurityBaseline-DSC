@@ -117,6 +117,14 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '1'
         }
+        # Disable Public Firewall Unicast Response
+        Registry 'DisableUnicastResponsesPublicFW' {
+            Ensure      = 'Present'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile'
+            ValueName   = 'DisableUnicastResponsesToMulticastBroadcast'
+            ValueType   = 'DWord'
+            ValueData   = '1'
+        }
         # Allow Outbound Connections PublicFW
         Registry 'AllowOutboundConnectionsPublicFW' {
             Ensure      = 'Present'
