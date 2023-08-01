@@ -253,6 +253,14 @@ Configuration Windows11_ASB {
             ValueType   = 'DWord'
             ValueData   = '0'
         }
+        # Set Defender Samples MAPS consent
+        Registry 'SendMAPSSafeSamplesConsent' {
+            Ensure      = 'Present'
+            Key         = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\SpyNet'
+            ValueName   = 'SubmitSamplesConsent'
+            ValueType   = 'DWord'
+            ValueData   = '1'
+        }
         # Sets the PKU2U setting to Not Set so that it doesn't show up in the Azure Security Baseline Guest Configuration
         Registry 'PKU2UNotSet' {
             Ensure      = 'Absent'
